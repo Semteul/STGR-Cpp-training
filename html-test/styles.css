@@ -1,0 +1,30 @@
+
+body {
+  background:#345;
+  color:#ddd;
+  font-family: sans-serif;
+}
+
+fieldset {
+  width:480px;
+}
+
+li {
+  margin:10px;
+  list-style: none;
+}
+
+input  {
+  margin-left:10px;
+  text-align: left;
+}
+
+textarea {
+  margin-left:10px;
+  text-align: left;
+}
+
+#test5gameSetting
+{
+  margin-bottom:10px
+}
