@@ -193,8 +193,12 @@ function run5play(player0) {
   if(result === -1) {
     output = fixColor("#ff0", "DRAW");
   }else if(result === 0) {
-    output = fixColor(t5color.player0, "Player Win");
+    t5.player0 += run5RSPScore(player0);
+    if(t5.player0-1 >= t5.total) {
 
+    }else {
+      output = fixColor(t5color.player0, "Player Win");
+    }
   }else if(result === 1) {
     output = fixColor(t5color.player1, "CPU Win");
   }
@@ -214,7 +218,7 @@ function run5fildCreator(size, player0, player1) {
     dup = "#ff0";
   }
 
-  for(var e = size-1; e >= 0; e--) {
+  for(var e = size; e >= 0; e--) {
     for(var f = 0; f < size; f++) {
       if(e === f) {
         if(player0 === e) {
@@ -234,11 +238,7 @@ function run5fildCreator(size, player0, player1) {
         result += "□";
       }
     }
-    if(e === size) {
-      result += " [TOP]<br>";
-    }else {
-      result += " [" + fixNum(e + 1) + "]<br>";
-    }
+    result += " [" + fixNum(e) + "]<br>";
   }
   return result;
 }
