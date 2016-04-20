@@ -10,16 +10,15 @@
 
 > HAYO?
 
-*HAYO?* _HAYO!_ -HAAYO-
-**HAYO?** __HAYO!__ --HAAYO--
-***HAYO?*** ___HAYO!___ ---HAAYO---
+*HAYO?* _HAYO!_
+
+**HAYO?** __HAYO!__
+
+***HAYO?*** ___HAYO!___
 
 [Gooooooogle?](www.google.com)
-[Gooooooogle!][www.google.com]
 
 ![jsbin](http://static.jsbin.com/images/jsbin_static.png)
-
-\'Coooooode\'
 
     Code block
     Code brick

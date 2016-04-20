@@ -17,7 +17,7 @@ function newContent() {
   var output = document.getElementById("result3");
   output.innerHTML = "검사할 코드블럭을 입력해주세요";
 
-  //Test3
+  //Test4
   var output = document.getElementById("result4");
   output.innerHTML = "아무 숫자나 집어넣으세요";
 }
@@ -194,13 +194,22 @@ function run5play(player0) {
     output = fixColor("#ff0", "DRAW");
   }else if(result === 0) {
     t5.player0 += run5RSPScore(player0);
-    if(t5.player0-1 >= t5.total) {
-
+    if(t5.player0 >= t5.total) {
+      t5.player0 = t5.total;
+      output = fixColor(t5color.player0, "<b>You Win!</b>");
+      t5.run = false;
     }else {
       output = fixColor(t5color.player0, "Player Win");
     }
   }else if(result === 1) {
-    output = fixColor(t5color.player1, "CPU Win");
+    t5.player1 += run5RSPScore(player1);
+    if(t5.player1 >= t5.total) {
+      t5.player1 = t5.total;
+      output = fixColor(t5color.player1, "<b>You Lose...</b>");
+      t5.run = false;
+    }else {
+      output = fixColor(t5color.player1, "CPU Win");
+    }
   }
   output += "<br>" +
   fixColor(t5color.player0, "★Player: " + run5RSPtoString(player0)) + SPACE + SPACE +
@@ -219,7 +228,7 @@ function run5fildCreator(size, player0, player1) {
   }
 
   for(var e = size; e >= 0; e--) {
-    for(var f = 0; f < size; f++) {
+    for(var f = 0; f <= size; f++) {
       if(e === f) {
         if(player0 === e) {
           if(dup) {
@@ -264,9 +273,9 @@ function run5RSP(player0, player1) {
 
 function run5RSPScore(rsp) {
   if(rsp === ROCK) {
-    return 2;
-  }else if(rsp === SISSOR) {
     return 1;
+  }else if(rsp === SISSOR) {
+    return 2;
   }else if(rsp === PAPER) {
     return 3;
   }else {

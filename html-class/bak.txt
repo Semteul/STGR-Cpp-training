@@ -1,0 +1,18 @@
+<style type="text/css">
+  body {
+    background: #333;
+    color: #fff;
+  }
+
+  a:link {
+    color: #f8f;
+  }
+
+  a:visited {
+    color: #f88;
+  }
+</style>
+
+<center>
+  <h1><b><u>HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEELLO?</u></b></h1>
+</center>
