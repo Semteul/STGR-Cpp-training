@@ -5,16 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApplication1 {
-    static class Program {
-        static void Main(string[] args) {
-            StringCalculator sc = new StringCalculator();
-            sc.run(); // ㅡ,.ㅡ;; 
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
-        }
-    }
-
-    public class StringCalculator {
+    class StringCalculator {
         const char ADD = '+';
         const char MINUS = '-';
         const char MULTIPLY = '*';
@@ -36,20 +27,10 @@ namespace ConsoleApplication1 {
             }
         }
 
-        public struct Returns { //function returns
-            public string equation;
-            public int status;
-
-            public Returns(string equation, int status) {
-                this.equation = equation;
-                this.status = status; //0: calculate finish, 1: need more, -1: error
-            }
-        }
-
         public StringCalculator() {
         }
 
-        public void run() {
+        public int run() {
             Console.WriteLine("Please write valid equation.");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder(); //String Builder
@@ -74,6 +55,7 @@ namespace ConsoleApplication1 {
                 }
             }
             Console.WriteLine(calculateBracket(sb.ToString()));
+            return 0;
         }
 
         public bool isValidChar(char ch) {
@@ -86,11 +68,6 @@ namespace ConsoleApplication1 {
             int currentBracket = -1;
             int deeperBracketStart = 0;
             int deeperBracketEnd = -1;
-            List<Bracket> brackets = new List<Bracket>();
-
-            brackets.Add(new Bracket());
-            brackets[0].setStart(0);
-
 
             for(int i = 0; i < equation.Length; i++) {
                 if(equation[i] == BRACKET_START) { // (
