@@ -1,0 +1,6 @@
+E:\workspace\cs-calculator\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+E:\workspace\cs-calculator\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+E:\workspace\cs-calculator\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+E:\workspace\cs-calculator\ConsoleApplication1\obj\Debug\cs-calculator.csprojResolveAssemblyReference.cache
+E:\workspace\cs-calculator\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+E:\workspace\cs-calculator\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
