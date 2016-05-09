@@ -1,0 +1,10 @@
+E:\workspace\SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.exe.config
+E:\workspace\SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.exe
+E:\workspace\SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.pdb
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.csprojResolveAssemblyReference.cache
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.Properties.Resources.resources
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.csproj.GenerateResource.Cache
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.exe
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.pdb
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.GameScreen.resources
+E:\workspace\SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.StartScreen.resources
