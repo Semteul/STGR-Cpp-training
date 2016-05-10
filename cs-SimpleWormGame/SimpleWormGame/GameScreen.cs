@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,14 @@ namespace SimpleWormGame {
         public GameScreen() {
             InitializeComponent();
             instance = this;
-            GameProgress.init();
-            Thread gt = new Thread(new ThreadStart(GameProgress.tick));
-            gt.Start();
         }
 
 
 
         private void GameScreen_Load(object sender, EventArgs e) {
-
+            GameProgress.init();
+            Thread gt = new Thread(new ThreadStart(GameProgress.tick));
+            gt.Start();
         }
 
         private void Label3_Paint(object sender, System.Windows.Forms.PaintEventArgs e) {
@@ -71,7 +71,9 @@ namespace SimpleWormGame {
         public void setText(Label label, string text) {
             if(label.InvokeRequired) {
                 SetTextCallback d = new SetTextCallback(setText);
-                this.Invoke(d, new object[] { label, text });
+                try {
+                    this.Invoke(d, new object[] { label, text });
+                } catch {}
             } else {
                 label.Text = text;
             }
@@ -82,7 +84,8 @@ namespace SimpleWormGame {
         public static class GameProgress {
 
             const string BORDER = "▒";
-            const string PLAYER_HEAD = "■";
+            const string BLANK = " ";
+            const string PLAYER_HEAD = "▣";
             const string PLAYER_BODY = "□";
             const string FOOD = "★";
             const string CRASH = "X";
@@ -92,7 +95,7 @@ namespace SimpleWormGame {
             const int RIGHT = 2;
             const int BOTTOM = 3;
 
-            static int maxFood = 2;
+            static int maxFood = 5;
             static int width;
             static int height;
             static int score;
@@ -100,12 +103,14 @@ namespace SimpleWormGame {
             static List<Vector2> foods;
             static int direction;
             static bool running;
+            static Random rx = new Random();
+            static Stopwatch sw = new Stopwatch();
 
 
 
             public static void init() {
-                width = 0xf;
-                height = 0xf;
+                width = 0x23;
+                height = 0x11;
                 score = 0;
                 running = true;
                 player = new List<Vector2>() {new Vector2(width / 2, height / 2)};
@@ -114,6 +119,21 @@ namespace SimpleWormGame {
                 for(int i = 0; i < maxFood; i++) {
                     randomFoodGenerator(0);
                 }
+            }
+
+
+
+            public static void end() {
+                running = false;
+                sw.Stop();
+                GameScreen.instance.setText(GameScreen.instance.game_direction, "Game Over");
+                GameScreen.instance.setText(GameScreen.instance.game_detail, "Length: " + player.Count +" TIme: " + getTime());
+            }
+
+
+
+            public static int getTime() {
+                return (int) sw.Elapsed.TotalSeconds;
             }
 
 
@@ -173,8 +193,8 @@ namespace SimpleWormGame {
 
 
             public static void randomFoodGenerator(int failCount) {
-                Random rx = new Random();
-                Vector2 v2 = new Vector2((rx.Next() % 1024) % width, (rx.Next() % 3333) % height);
+                
+                Vector2 v2 = new Vector2(rx.Next(0, width), rx.Next(0, height));
                 Console.Write(GameProgress.collisionCheck(v2));
                 if(GameProgress.collisionCheck(v2) != 0) {
                     if(++failCount > 128) {
@@ -193,7 +213,8 @@ namespace SimpleWormGame {
                 if(binaryDat < 0) {
                     draw(new Vector2(-2, -2));
                     return true; //Not ready
-                }
+                }else if(!sw.IsRunning)
+                    sw.Start();
                 Vector2 loc = new Vector2(player[0].x + (binaryDat % 2 == 0 ? binaryDat > 1 ? 1 : -1 : 0), player[0].y + (binaryDat % 2 == 1 ? binaryDat > 1 ? 1 : -1 : 0));
                 int collisionType = GameProgress.collisionCheck(loc); //충돌체크 TODO: 비효율적임
                 bool canMove = collisionType >= 0; //움직임이 가능한가
@@ -201,6 +222,7 @@ namespace SimpleWormGame {
                     if(collisionType == 1) { // 음식
                         foods.RemoveAt(foods.IndexOf(loc));
                         player.Insert(0, loc); // 플레이어 머리부분으로 크기 증가
+                        score += 10;
                         randomFoodGenerator(0); // 음식 재 생성
                     } else {
                         player.Insert(0, loc); // 한칸씩 앞으로 이동
@@ -237,7 +259,7 @@ namespace SimpleWormGame {
                             result += BORDER;
                             break;
                         case 0:
-                            result += " ";
+                            result += BLANK;
                             break;
                         case 1:
                             result += FOOD;
@@ -252,17 +274,20 @@ namespace SimpleWormGame {
 
                 GameScreen.instance.setText(GameScreen.instance.game_filed, result);
                 GameScreen.instance.setText(GameScreen.instance.game_direction, GameScreen.directionToString(GameProgress.getDirection()));
+
+                GameScreen.instance.setText(GameScreen.instance.game_detail, "Length: " + player.Count + " TIme: " + getTime());
+                if(score > 0 && (sw.ElapsedMilliseconds % 1000) < 300) {
+                    score--;
+                }
+                GameScreen.instance.setText(GameScreen.instance.game_score, score +" :Score");
             }
 
 
 
             public static void tick() {
                 while(running) {
-                    if(!move()) {
-                        GameScreen.instance.setText(GameScreen.instance.game_direction, "Game Over");
-                        running = false;
-                    }
-                    Thread.Sleep(500);
+                    if(!move()) end();
+                    Thread.Sleep(300);
                 }
             }
         }

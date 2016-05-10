@@ -23,34 +23,34 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.game_detail = new System.Windows.Forms.Label();
             this.game_score = new System.Windows.Forms.Label();
-            this.game_time = new System.Windows.Forms.Label();
             this.game_filed = new System.Windows.Forms.Label();
             this.game_direction = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // game_detail
+            // 
+            this.game_detail.Location = new System.Drawing.Point(10, 18);
+            this.game_detail.Name = "game_detail";
+            this.game_detail.Size = new System.Drawing.Size(160, 20);
+            this.game_detail.TabIndex = 0;
+            this.game_detail.Text = "Length: 0 Time: 0";
+            this.game_detail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // game_score
             // 
-            this.game_score.Location = new System.Drawing.Point(10, 18);
+            this.game_score.Location = new System.Drawing.Point(479, 18);
             this.game_score.Name = "game_score";
             this.game_score.Size = new System.Drawing.Size(160, 20);
-            this.game_score.TabIndex = 0;
-            this.game_score.Text = "Score: 0";
-            this.game_score.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // game_time
-            // 
-            this.game_time.Location = new System.Drawing.Point(479, 18);
-            this.game_time.Name = "game_time";
-            this.game_time.Size = new System.Drawing.Size(160, 20);
-            this.game_time.TabIndex = 1;
-            this.game_time.Text = "0 :Time";
-            this.game_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.game_score.TabIndex = 1;
+            this.game_score.Text = "0 :Score";
+            this.game_score.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // game_filed
             // 
             this.game_filed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.game_filed.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.game_filed.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.game_filed.Location = new System.Drawing.Point(12, 47);
             this.game_filed.Margin = new System.Windows.Forms.Padding(5);
             this.game_filed.Name = "game_filed";
@@ -75,8 +75,8 @@
             this.ClientSize = new System.Drawing.Size(651, 582);
             this.Controls.Add(this.game_direction);
             this.Controls.Add(this.game_filed);
-            this.Controls.Add(this.game_time);
             this.Controls.Add(this.game_score);
+            this.Controls.Add(this.game_detail);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "GameScreen";
@@ -91,8 +91,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Label game_detail;
         private System.Windows.Forms.Label game_score;
-        private System.Windows.Forms.Label game_time;
         private System.Windows.Forms.Label game_filed;
         private System.Windows.Forms.Label game_direction;
     }
