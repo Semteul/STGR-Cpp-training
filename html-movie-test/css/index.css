@@ -1,0 +1,39 @@
+body {
+  font-family: sans-serif;
+  /*background-image: url("../public/bg.jpg");*/
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  color: #ddd;
+  padding-top: 72px;
+}
+
+body a {
+    display: block;
+    position: relative;
+    text-decoration: underline;;
+    color: #ffaaaa !important;
+}
+
+#bg {
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;
+  width:100%;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+#titleBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: auto;
+  margin-bottom: 20px;
+  font-size: 48px;
+  line-height: 48px;
+  padding: 10px;
+  background-color:#58f;
+}

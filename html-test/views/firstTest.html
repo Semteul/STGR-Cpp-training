@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World! - test</title>
+    <meta name="description" content="test">
+    <link rel="stylesheet" type="text/css" href="..\style\firstTest.css"></link>
+    <script type="text/javascript" src="..\js\firstTest.js"></script>
+  </head>
+  <body onload="newContent();">
+    <noscript>
+      <div>
+        <center><p><u><span style="color:#dd0">저런 유감이군요. 자바스크립트가 없어서 작동하지 않습니다 :/</span></u></p></center>
+      </div>
+    </noscript>
+    <center id="center">
+      <fieldset>
+        <legend><h1>Test 1</h1></legend>
+        <input type="input" id="et11" value="" placeholder="Enter number">
+        <input type="button" id="btn11" value="RUN" onclick="run1()">
+        <br>
+        <br>
+        <tt><div id="result1"></div></tt>
+      </fieldset>
+
+      <fieldset>
+        <legend><h1>Test 2</h1></legend>
+        <input type="input" id="et21" value="" placeholder="X">
+        <input type="input" id="et22" value="" placeholder="Y">
+        <input type="button" id="btn21" value="RUN" onclick="run2()">
+        <br>
+        <br>
+        <tt><div id="result2"></div></tt>
+      </fieldset>
+
+      <fieldset>
+        <legend><h1>Test 3</h1></legend>
+        <input type="input" id="et31" value="" placeholder="Enter code">
+        <input type="button" id="btn31" value="RUN" onclick="run3()">
+        <br>
+        <br>
+        <tt><div id="result3"></div></tt>
+      </fieldset>
+
+      <fieldset>
+        <legend><h1>Test 4</h1></legend>
+        <input type="input" id="et41" value="" placeholder="Enter Number">
+        <input type="button" id="btn41" value="Input" onclick="run4()">
+        <input type="button" id="btn42" value="Clear" onclick="run4clear()">
+        <br>
+        <br>
+        <tt><div id="result4"></div></tt>
+      </fieldset>
+
+      <fieldset>
+        <legend><h1>Test 5</h1></legend>
+        <div id="test5gameSetting">
+        <input type="input" id="et51" value="" placeholder="계단 수">
+        <input type="button" id="btn50" value="새 게임" onClick="run5()">
+      </div>
+        <input type="button" id="btn51" value="가위" onclick="run5s()">
+        <input type="button" id="btn52" value="바위" onclick="run5r()">
+        <input type="button" id="btn53" value="보" onClick="run5p()">
+        <br>
+        <br>
+        <tt><div id="result5"></div></tt>
+      </fieldset>
+    </center>
+  </body>
+</html>

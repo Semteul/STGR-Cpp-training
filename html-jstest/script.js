@@ -1,17 +1,16 @@
 //+ Jonas Raoni Soares Silva
 //@ http://jsfromhell.com/classes/bignumber [rev. #4]
 
-var el = document.getElementById("output");
+var el;
 function log(str, reset) {
+  if(!el) return;
 	if(reset) {
-		el.nodeValue = str;
+		el.innerHTML = str;
 	}else {
-		el.nodeValue = el.nodeValue + "<br>" + str;
+		el.innerHTML = el.innerHTML + "<br>" + str;
 	}
 	//document.write(str + "<br>");
 }
-
-log("script start...");
 
 BigNumber = function(n, p, r){
 	var o = this, i;
@@ -149,78 +148,93 @@ with({$: BigNumber, o: BigNumber.prototype}){
 	};
 }
 
-log("BigNumber Loaded");
-
 //==========
 
-//Input
-var original = new BigNumber(19*16*38*17*36*210*1777);
-
-var run = true;
-var current = original;
-var div = new BigNumber('2');
-var result = {};
-var max = 1000;
-var count = 0;
-var taskPerWork = 100;
-var tpw = 0;
-
-function d_task() {
-	var part = current.divide(div);
-	if((part + '').indexOf('.') === -1) {
-		if(typeof result[div] !== 'number') {
-			result[div] = 1;
-		}else {
-			result[div]++;
-		}
-		current = part;
-	}else {
-		div.set(div.add(1));
-	}
-	if(++count === max) {
-		log("[Warn] loop reach max count!")
-		run = false;
-	}
+function workingAni(i) {
+  switch(i%3) {
+    case 0:
+    return ".";
+    case 1:
+    return "..";
+    default:
+    return "...";
+  }
 }
 
-function d_result() {
-log(run ? "===Test Running...===" : "===End Test===");
-log("인수분해할 수: " + original);
-log("마지막으로 나눠진 값: " + div);
-log("남은 값: " + current + (current.compare(1) === 0 ? " (모두 정상적으로 나눠짐)" : " (비정상 모두 나눠지지 않음)"));
-log("계산 반복횟수: " + count);
-log("");
-log("분해 결과: ");
+function ready() {
+  //Input 6516510*1777*383
+  var original = new BigNumber("4435078057410");
+  var max = 10000000;
+  var taskPerWork = 100;
 
-var keys = Object.getOwnPropertyNames(result);
+  //Do not touch
+  var run = true;
+  var current = original;
+  var div = new BigNumber('2');
+  var result = {};
+  var count = 0;
+  var tpw = 0;
+  var ani = 0;
 
-for(var i in keys) {
-	log(keys[i] + ': ' + result[keys[i]] + "개");
+  function d_task() {
+  	var part = current.divide(div);
+  	if((part + '').indexOf('.') === -1) {
+  		if(typeof result[div] !== 'number') {
+  			result[div] = 1;
+  		}else {
+  			result[div]++;
+  		}
+  		current = part;
+  	}else {
+  		div.set(div.add(1));
+  	}
+  	if(++count === max) {
+  		log("[Warn] loop reach max count!")
+  		run = false;
+  	}
+  }
+
+  function d_result() {
+    log(run ? "=== Test Running" + workingAni(ani++) : "=== End Test", true);
+    log("");
+    log("Number for factorization: " + original);
+    log("Last divide value: " + div);
+    log("Remaind value: " + current + (current.compare(1) === 0 ? " (Disassembled normally)" : " (Disassembled abnormally)"));
+    log("Calculate repeat count: " + count);
+    log("");
+    log("Disassemble result: ");
+
+  var keys = Object.getOwnPropertyNames(result);
+
+  for(var i in keys) {
+  	log(keys[i] + ': ' + result[keys[i]] + "unit");
+  }
+
+  }
+
+
+  function d_loop() {
+  	setTimeout(function() {
+  		while(current.compare(div) !== -1 && run) {
+  			d_task();
+  			if(++tpw === taskPerWork) {
+  				tpw = 0;
+  				d_result();
+  				break;
+  			}
+  		}
+  		if(current.compare(div) !== -1 && run) {
+  			d_loop();
+  		}else {
+  			if(run) {
+  				run = false;
+  				d_result();
+  			}
+  		}
+  	}, 1);
+  }
+
+  el = document.getElementById("output");
+  log("loop start...");
+  d_loop();
 }
-
-}
-
-
-function d_loop() {
-	setTimeout(function() {
-		while(current.compare(div) !== -1 && run) {
-			d_task();
-			if(++tpw === taskPerWork) {
-				tpw = 0;
-				d_result();
-				break;
-			}
-		}
-		if(current.compare(div) !== -1 && run) {
-			d_loop();
-		}else {
-			if(run) {
-				run = false;
-				d_result();
-			}
-		}
-	}, 10);
-}
-
-log("loop start...");
-d_loop();

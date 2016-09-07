@@ -21,10 +21,6 @@ namespace SimpleWormGame {
 
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e) {
-            
-        }
-
         private void main_exit_Click(object sender, EventArgs e) {
             this.Close();
         }

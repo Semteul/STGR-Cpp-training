@@ -18,15 +18,12 @@ namespace SimpleWormGame {
         public GameScreen() {
             InitializeComponent();
             instance = this;
-        }
-
-
-
-        private void GameScreen_Load(object sender, EventArgs e) {
             GameProgress.init();
             Thread gt = new Thread(new ThreadStart(GameProgress.tick));
             gt.Start();
         }
+
+
 
         private void Label3_Paint(object sender, System.Windows.Forms.PaintEventArgs e) {
             string text = "TEST\nTEST";
@@ -46,8 +43,6 @@ namespace SimpleWormGame {
                 pos += sizeChar.Width + size.Width * lineSpacing;
             }
         }
-
-
 
         public struct Vector2 {
 
@@ -81,13 +76,24 @@ namespace SimpleWormGame {
 
 
 
+        public delegate void CloseDelegate();
+
+        public void SafeClose() {
+            CloseDelegate d = new CloseDelegate(Close);
+            try {
+                this.Invoke(d, new object[] {});
+            } catch { }
+        }
+
+
+
         public static class GameProgress {
 
             const string BORDER = "▒";
             const string BLANK = " ";
-            const string PLAYER_HEAD = "▣";
-            const string PLAYER_BODY = "□";
-            const string FOOD = "★";
+            const string PLAYER_HEAD = "@";
+            const string PLAYER_BODY = "O";
+            const string FOOD = "$";
             const string CRASH = "X";
 
             const int LEFT = 0;
@@ -102,6 +108,7 @@ namespace SimpleWormGame {
             static List<Vector2> player;
             static List<Vector2> foods;
             static int direction;
+            static int lastDirection;
             static bool running;
             static Random rx = new Random();
             static Stopwatch sw = new Stopwatch();
@@ -109,12 +116,13 @@ namespace SimpleWormGame {
 
 
             public static void init() {
-                width = 0x23;
+                width = 0x21;
                 height = 0x11;
                 score = 0;
                 running = true;
-                player = new List<Vector2>() {new Vector2(width / 2, height / 2)};
-                direction = -1;
+                player = new List<Vector2>() {new Vector2(width / 2, height / 2)}; //Player first position
+                direction = -1; //Not move
+                lastDirection = -1;
                 foods = new List<Vector2>();
                 for(int i = 0; i < maxFood; i++) {
                     randomFoodGenerator(0);
@@ -145,19 +153,29 @@ namespace SimpleWormGame {
 
 
             public static bool isRunning() {
-                return running;
+                return GameProgress.running;
             }
 
 
 
-            public static void setDirection(int direction) {
+            public static int getScore() {
+                return GameProgress.score;
+            }
+
+
+
+            public static bool setDirection(int direction) {
                 if(!(direction >= 0 && direction < 4)) {
                     throw new Exception("undefined direction");
                 }
-                if(GameProgress.direction != -1 && Math.Abs(GameProgress.direction - direction) % 2 == 0) {
-                    return;
+                //이미 진행중인 방향이나 바로 반대방향으로는 진행불가
+                if(!GameProgress.isRunning()
+                    || (GameProgress.getDirection() != -1
+                    && Math.Abs(GameProgress.lastDirection - direction) % 2 == 0)) {
+                    return false;
                 }
                 GameProgress.direction = direction;
+                return true;
             }
 
 
@@ -195,7 +213,6 @@ namespace SimpleWormGame {
             public static void randomFoodGenerator(int failCount) {
                 
                 Vector2 v2 = new Vector2(rx.Next(0, width), rx.Next(0, height));
-                Console.Write(GameProgress.collisionCheck(v2));
                 if(GameProgress.collisionCheck(v2) != 0) {
                     if(++failCount > 128) {
                         throw new Exception("Food generate fail");
@@ -209,12 +226,13 @@ namespace SimpleWormGame {
 
 
             public static bool move() {
-                int binaryDat = GameProgress.getDirection(); //한줄코딩 변태짓
+                int binaryDat = GameProgress.getDirection(); 
                 if(binaryDat < 0) {
                     draw(new Vector2(-2, -2));
                     return true; //Not ready
                 }else if(!sw.IsRunning)
-                    sw.Start();
+                    sw.Start(); //타임워치 시작
+                //한줄코딩 변태짓
                 Vector2 loc = new Vector2(player[0].x + (binaryDat % 2 == 0 ? binaryDat > 1 ? 1 : -1 : 0), player[0].y + (binaryDat % 2 == 1 ? binaryDat > 1 ? 1 : -1 : 0));
                 int collisionType = GameProgress.collisionCheck(loc); //충돌체크 TODO: 비효율적임
                 bool canMove = collisionType >= 0; //움직임이 가능한가
@@ -232,6 +250,7 @@ namespace SimpleWormGame {
                 } else {
                     draw(loc); // 충돌한 부위가 있을떄
                 }
+                lastDirection = direction; //마지막 진행방향
                 return canMove;
             }
 
@@ -273,7 +292,7 @@ namespace SimpleWormGame {
                 }
 
                 GameScreen.instance.setText(GameScreen.instance.game_filed, result);
-                GameScreen.instance.setText(GameScreen.instance.game_direction, GameScreen.directionToString(GameProgress.getDirection()));
+                
 
                 GameScreen.instance.setText(GameScreen.instance.game_detail, "Length: " + player.Count + " TIme: " + getTime());
                 if(score > 0 && (sw.ElapsedMilliseconds % 1000) < 300) {
@@ -286,9 +305,15 @@ namespace SimpleWormGame {
 
             public static void tick() {
                 while(running) {
-                    if(!move()) end();
+                    if(!move()) {
+                        Console.WriteLine("GameEnd");
+                        end();
+                    }
                     Thread.Sleep(300);
                 }
+                StartScreen.setScore(GameProgress.getScore());
+                Thread.Sleep(3000);
+                GameScreen.instance.SafeClose();
             }
         }
 
@@ -314,20 +339,26 @@ namespace SimpleWormGame {
         }
 
         private void GameScreen_KeyDown(object sender, KeyEventArgs e) {
+            bool valid;
             switch(e.KeyData) {
             case Keys.Left:
-                GameProgress.setDirection(0);
+                valid = GameProgress.setDirection(0);
                 break;
             case Keys.Up:
-                GameProgress.setDirection(1);
+                valid = GameProgress.setDirection(1);
                 break;
             case Keys.Right:
-                GameProgress.setDirection(2);
+                valid = GameProgress.setDirection(2);
                 break;
             case Keys.Down:
-                GameProgress.setDirection(3);
+                valid = GameProgress.setDirection(3);
+                break;
+            default:
+                valid = false;
                 break;
             }
+            if(valid)
+                GameScreen.instance.setText(GameScreen.instance.game_direction, GameScreen.directionToString(GameProgress.getDirection()));
         }
     }
 }

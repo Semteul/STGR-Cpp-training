@@ -1,0 +1,9 @@
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Release\SimpleWormGame.exe.config
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Release\SimpleWormGame.exe
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Release\SimpleWormGame.pdb
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Release\SimpleWormGame.GameScreen.resources
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Release\SimpleWormGame.StartScreen.resources
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Release\SimpleWormGame.Properties.Resources.resources
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Release\SimpleWormGame.csproj.GenerateResource.Cache
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Release\SimpleWormGame.exe
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Release\SimpleWormGame.pdb

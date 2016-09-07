@@ -13,8 +13,9 @@ E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.pdb
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.exe
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.pdb
-E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.csprojResolveAssemblyReference.cache
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.GameScreen.resources
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.StartScreen.resources
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.Properties.Resources.resources
 E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\obj\Debug\SimpleWormGame.csproj.GenerateResource.Cache
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.exe.CodeAnalysisLog.xml
+E:\workspace\STGR-test\cs-SimpleWormGame\SimpleWormGame\bin\Debug\SimpleWormGame.exe.lastcodeanalysissucceeded

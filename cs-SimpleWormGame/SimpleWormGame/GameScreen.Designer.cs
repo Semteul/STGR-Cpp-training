@@ -49,8 +49,7 @@
             // 
             // game_filed
             // 
-            this.game_filed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.game_filed.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.game_filed.Font = new System.Drawing.Font("Consolas", 17F);
             this.game_filed.Location = new System.Drawing.Point(12, 47);
             this.game_filed.Margin = new System.Windows.Forms.Padding(5);
             this.game_filed.Name = "game_filed";
@@ -83,7 +82,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SimpleWormGame";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameScreen_FormClosing);
-            this.Load += new System.EventHandler(this.GameScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyDown);
             this.ResumeLayout(false);
 

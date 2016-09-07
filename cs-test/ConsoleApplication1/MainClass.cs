@@ -12,7 +12,7 @@ namespace ConsoleApplication1 {
         static Stopwatch sw = new Stopwatch();
         static bool runSw = false;
 
-        static int Main(string[] args) {
+        static int Main2(string[] args) {
             while(true) {
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.White;
@@ -39,6 +39,10 @@ namespace ConsoleApplication1 {
                 case '2':
                     UntitledTest1 test2 = new UntitledTest1();
                     errorCode = test2.run();
+                    break;
+                case '3':
+                    AsyncTest test3 = new AsyncTest();
+                    errorCode = test3.run();
                     break;
                 default:
                     if(sw.IsRunning) {
