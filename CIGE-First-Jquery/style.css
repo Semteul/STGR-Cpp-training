@@ -1,0 +1,44 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #333;
+  color: #ddd;
+}
+
+#content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #555;
+  border-radius: 32px;
+  width: 75%;
+  height: 75%;
+  padding: 0;
+  text-align: center;
+}
+
+#buttons {
+  position: fixed;
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 50%;
+  display: none;
+}
+
+button {
+  margin-left: 8px;
+  margin-right: 8px;
+}

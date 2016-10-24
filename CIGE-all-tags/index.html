@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <meta name=viewprot content="width=device-width,initial-scale=1.0">
+    <meta name=theme-color content="#333333"> <!--For Mobile Chrome-->
+    <title>All in One</title>
+    <link href="https://fonts.googleapis.com/css?family=Iceland" rel="stylesheet">
+    <style type=text/css>
+      .box1 {
+        width: 300px;
+        height: 200px;
+        overflow: auto;
+        border: 2px solid #0c6;
+        border-top: 10px solid #0c6;
+        margin-left: 10px;
+        padding: 10px;
+        display: inline-block;
+        font-size: 40px;
+      }
+    </style>
+    <script type=text/javascript>
+      function showMe() {
+        alert("Popup Message!");
+      }
+
+      function ani1(ctx) {
+        var time = Date.now() % 2000;
+        var canvas = document.getElementById("magicStartHere");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(-100, -100, 500, 200);
+        ctx.fillStyle = "#ff0";
+
+        ctx.font = ((1 - Math.pow(Math.abs(time-1000)/1000, 2))*30 + 10) + "px Iceland";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("Hand made!", 100, 50);
+      }
+
+      function startMagic() {
+        var canvas = document.getElementById("magicStartHere");
+        var ctx = canvas.getContext("2d");
+        ctx.rotate(20*Math.PI/180);
+        ctx.translate(0, -40);
+        setInterval(function() {
+          ani1(ctx);
+        }, 1);
+      }
+    </script>
+  </head>
+  <body style="width:50%;margin-left:25%;background-color:#333;color:#fff;text-align:center" onLoad="startMagic()">
+    <img src="./img.png" width=64px height=64px>
+    <p style="display:inline-block"><mark>All in One</mark></p>
+    <fieldset>
+      <legend>h1~h6</legend>
+      <ol>
+        <li><h1>Big!</h1></li>
+        <li><h2>Big!!</h2></li>
+        <li><h3>Big!!!</h3></li>
+        <li><h4>Big!!!!</h4></li>
+        <li><h5>Big!!!!!</h5></li>
+        <li><h6><s>(Not)</s> Big!!!!!!</h6></li>
+      </ol>
+    </fieldset>
+    <p><strong>Strong</strong> vs <b>Bold</b></p>
+    <p><sup>up</sup><sub>down</sub></p>
+    <noscript><p>Alert only work in Javascript enabled browser</p></noscript>
+    <p><bdo dir="rtl"><u>Change Direction!</u></bdo></p>
+    <textarea rows=4 cols=40>resizeable textarea</textarea>
+    <br>
+    <table border="20" style="border-color:hotpink;display:inline-block">
+      <thead>
+        <th colspan="3">Header HAYO!</th>
+      </thead>
+      <tfoot>
+        <th colspan="3">Footer HAYO?</th>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td rowspan="2">HAYO!</td>
+          <td colspan="2">HAYO!!</td>
+        </tr>
+        <tr>
+          <td>HAYO?</td>
+          <td rowspan="2">HAYO?</td>
+        </tr>
+        <tr>
+          <td colspan="2">HAYO!</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=box1>
+      <p>Article</p>
+      <ul>
+        <li>H</li>
+        <li>A</li>
+        <li>Y</li>
+        <li>O</li>
+      </ul>
+    </div>
+    <p><button onClick="showMe()">Alert</button></p>
+    <hr>
+    <a href="http://semteul.com/Tetris.html" style="color:#39f;font-size:50px">
+      <abbr title="Fun!">Play Tetris!</abbr>
+    </a>
+    <canvas id=magicStartHere width=200px height=100px></canvas>
+    <hr>
+    <p><i>Mine sweeper By Khinenw <s>(Deprecated iframe)</s></i></p>
+    <iframe width=100% height=1000px frameborder=0 src="http://legacy.khinenw.tk/play/MineSweeper.html"></iframe>
+  </body>
+</html>
