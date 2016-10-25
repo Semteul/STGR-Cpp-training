@@ -9,16 +9,34 @@
   </head>
   <body>
     <header>
-      <button id="why">WHY?</button>
-      <button id="help">HELP</button>
+      <button id="why" class="navBtn" onClick="whyClick()">WHY?</button>
+      <button id="help" class="navBtn" onClick="helpClick()">HELP</button>
     </header>
     <main id="content">
-      <div id="kenBurns">
-        <img id="imgBefore" src="before.jpg" />
-        <img id="imgAfter" src="after.jpg" />
-      </div>
-      <p id="mainText">hello</p>
+      <section id="before">
+        <button id="initBtn" onClick="initClick()">ISIS?</button>
+      </section>
+      <section id="after">
+      </section>
+      <section id="ken" class="content">
+        <div id="kenDiv" class="contentDiv">
+          <div id="kenImg">
+            <img class="kenburns" src="img/ken.jpg" />
+          </div>
+          <div id="kenText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at justo quis ipsum blandit pretium. Nam finibus mauris lacus, a vehicula diam feugiat nec. Vivamus eget risus tincidunt, blandit arcu et, pellentesque purus. Fusce pellentesque odio diam, ac malesuada arcu placerat vitae. Suspendisse vestibulum libero tortor, vitae imperdiet massa pretium id. Sed et orci dolor. Pellentesque in nisi ut mi consequat luctus.</div>
+        </div>
+      </section>
+      <section id="reg" class="content">
+        <div id="regDiv" class="contentDiv">
+          <form>
+            <div id="inputField">
+              <input id="nameField" type="text" placeholder="Name"></input>
+              <input id="emailField" type="text" placeholder="Email"></input>
+            </div>
+            <input id="submitField" type="submit" value="Submit" onClick="submitClick()"></input>
+          </form>
+        </div>
+      </section>
     </main>
-    <button id="initBtn" onClick="initClick()">ISIS?</button>
   </body>
 </html>
