@@ -1,0 +1,83 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin:0;
+  font-size: 15px;
+}
+
+#imgDiv {
+  position: fixed;
+  left: 25%;
+  top: 50%;
+  overflow: hidden;
+  transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 5deg);
+}
+
+#textDiv {
+  position: fixed;
+  left: 75%;
+  top: 50%;
+
+  transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -10deg);
+}
+
+#imgDiv > img {
+  width: auto;
+  height: auto;
+}
+
+#textInnerDiv {
+  padding: 10px;
+}
+
+#content > div {
+  width: 300px;
+  height: 200px;
+  border: solid 2px #000;
+  border-radius: 10px;
+  box-shadow: 10px 10px 50px #8fc;
+}
+
+@keyframes kenburns {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+    transform: translate3d(-220px, -50px, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-220px, -50px, 0);
+  }
+}
+
+.kenBurns {
+  animation: kenburns 10s ease-out infinite;
+}
+
+@keyframes colorswap {
+  0% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: #adf;
+  }
+}
+
+.colorSwap {
+  animation: colorswap 4s;
+  background-color: #adf;
+}
+
+.colorSwapReverse {
+  animation: colorswap 4s reverse;
+  background-color: transparent;
+}
